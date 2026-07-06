@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Time Attack: Spielberg Track Day</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <div id="fps-counter" class="hidden">
+    FPS: <span id="fps-value">0</span>
+  </div>
+
+  <div id="screen-loading" class="menu-overlay">
+    <div class="menu-container">
+      <div class="brand-sub">FERRARI CHALLENGE</div> <h1 class="menu-title">TIME ATTACK<span class="highlight">.</span></h1>
+      <div class="track-info">TRACK LOADING...</div>
+      <div class="progress-bar-container">
+        <div id="progress-bar" class="progress-bar"></div>
+      </div>
+      <div id="progress-text" class="progress-text">0%</div>
+    </div>
+  </div>
+
+  <div id="ui-timing" class="hidden">
+    <div class="timing-board">
+      <div class="track-record-display">
+        <span class="label">TRACK RECORD:</span>
+        <span id="track-record-value">0:00.000</span>
+      </div>
+      <div class="sectors-container">
+        <div id="sector-0" class="sector-box">S1</div>
+        <div id="sector-1" class="sector-box">S2</div>
+        <div id="sector-2" class="sector-box">S3</div>
+      </div>
+      <div class="lap-time-display">
+        <span id="current-lap-time">00:00.000</span>
+      </div>
+      <div class="last-lap-display">
+        <span class="label">LAST LAP:</span>
+        <span id="last-lap-value">--:--.---</span>
+      </div>
+      <div class="personal-record-display">
+        <span class="label">BEST LAP:</span>
+        <span id="personal-best-value">--:--.---</span>
+      </div>
+    </div>
+  </div>
+
+  <div id="screen-start" class="menu-overlay hidden">
+    <div class="start-layout">
+      <div class="start-header">
+        <div class="brand-sub">FERRARI CHALLENGE</div>
+        <h1 class="menu-title">TIME ATTACK<span class="highlight">.</span></h1>
+        <div class="track-info">SPIELBERG TRACK DAY</div>
+      </div>
+
+      <div class="start-footer">
+        <div class="start-button-row">
+          <button id="btn-play-pit" class="menu-btn btn-secondary btn-large">
+            <span class="btn-text">PIT START</span>
+          </button>
+          <button id="btn-play" class="menu-btn btn-primary btn-large">
+            <span class="btn-text">GRID START</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="ui-camera-settings" class="side-panel hidden">
+    <div class="panel-header">
+      <h2 class="menu-title" style="font-size: 2.2rem;">CAMERA<span class="highlight">.</span></h2>
+      <p class="menu-description" style="margin-bottom: 2rem;">3rd Person Configuration</p>
+    </div>
+
+    <div class="slider-group">
+      <label for="cam-dist">Distance: <span id="val-dist">10.0</span>m</label>
+      <input type="range" id="cam-dist" min="4" max="25" step="0.5" value="10">
+    </div>
+
+    <div class="slider-group">
+      <label for="cam-height">Height: <span id="val-height">3.5</span>m</label>
+      <input type="range" id="cam-height" min="1" max="10" step="0.2" value="3.5">
+    </div>
+
+    <div style="flex-grow: 1;"></div>
+
+    <button id="btn-close-camera" class="menu-btn btn-primary full-width">
+      <span class="btn-text">SAVE & RETURN</span>
+    </button>
+  </div>
+
+  <div id="ui-enter-car" class="hidden">
+    <span class="key-btn">E</span> TO ENTER VEHICLE
+  </div>
+
+  <div id="screen-gameover" class="menu-overlay hidden">
+    <div class="menu-container">
+      <h1 class="menu-title">RACE OVER<span class="highlight">.</span></h1>
+      <p id="final-score" class="menu-description"></p>
+      <div class="center-button-wrapper">
+        <button id="btn-restart" class="menu-btn btn-primary">RESTART</button>
+      </div>
+    </div>
+  </div>
+
+  <div id="screen-pause" class="menu-overlay hidden" style="z-index: 2000;">
+    <div class="menu-container">
+      <h1 class="menu-title">PAUSED<span class="highlight">.</span></h1>
+      <p class="menu-description">Game is on hold. Telemetry recording paused.</p>
+      <div class="button-group">
+        <button id="btn-resume" class="menu-btn btn-primary full-width">
+          <span class="btn-text">RESUME RACE</span>
+        </button>
+        <button id="btn-camera" class="menu-btn btn-secondary full-width">
+          <span class="btn-text">CAMERA SETTINGS</span>
+        </button>
+        <button id="btn-quit" class="menu-btn btn-secondary full-width">
+          <span class="btn-text">RETURN TO MAIN MENU</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <div id="ui-game" class="hidden">
+    <div id="speedometer">
+      <span id="speed-value">0</span>
+      <span id="speed-unit">KM/H</span>
+    </div>
+    <div id="pit-limiter" class="hidden">PIT LIMITER</div>
+    <div id="pit-penalty" class="hidden">PENALTY +0s</div>
+  </div>
+  <div id="pit-penalty-toast" class="hidden">+10s PENALTY</div>
+
+  <div id="ui-controls" class="hidden">
+    <div class="controls-title">CONTROLS</div>
+    <div class="ctrl"><span class="k">W</span> Accelerate</div>
+    <div class="ctrl"><span class="k">S</span> Reverse</div>
+    <div class="ctrl"><span class="k">A</span><span class="k">D</span> Steer</div>
+    <div class="ctrl"><span class="k">Space</span> Brake</div>
+    <div class="ctrl"><span class="k">E</span> Enter / Exit</div>
+    <div class="ctrl"><span class="k">V</span> Free Camera</div>
+    <div class="ctrl"><span class="k">R</span> Respawn</div>
+    <div class="ctrl"><span class="k">Esc</span> Pause</div>
+  </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/loaders/GLTFLoader.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/tween.js/18.6.4/tween.umd.js"></script>
+
+  <script type="module">
+    import * as CANNON from 'https://cdn.jsdelivr.net/npm/cannon-es@0.20.0/+esm';
+    window.CANNON = CANNON;
+
+    const load = src => new Promise((res, rej) => {
+      const s = document.createElement('script');
+      s.src = src;
+      s.onload = res;
+      s.onerror = () => { console.error('404:', src); rej(new Error(src)); };
+      document.body.appendChild(s);
+    });
+
+    await load('src/state.js');
+    await load('src/input.js');
+    await load('src/ui.js');
+    await load('src/record.js');
+    await load('cannon/world.js');
+    await load('cannon/bodies.js');
+    await load('src/smoke.js');
+    await load('tween/racer_animation.js');
+    await load('3d/racer.js');
+    await load('3d/scene.js');
+    await load('3d/player.js');
+    await load('tween/camera_shots.js');
+    await load('tween/animations.js');
+    await load('src/main.js');
+  </script>
+</body>
+</html>
