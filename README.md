@@ -1,4 +1,4 @@
-# Time Attack: Spielberg Track Day - >> 🕹️ [Live demo](https://sapienzainteractivegraphicscourse.github.io/final-project-zznnp/) <<
+# Ferrari Challenge: TIME ATTACK - >> 🕹️ [Live demo](https://sapienzainteractivegraphicscourse.github.io/final-project-zznnp/) <<
 
 A browser-based racing simulator built with Three.js, Cannon-es, and Tween.js. Drive a Ferrari around the Red Bull Ring (Spielberg) circuit in Austria. Complete hot laps, beat sector records, and experience a immersive pit-to-track workflow.
 
