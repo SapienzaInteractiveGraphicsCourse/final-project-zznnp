@@ -2,6 +2,10 @@
 
 A browser-based racing simulator built with Three.js, Cannon-es, and Tween.js. Drive a Ferrari around the Red Bull Ring (Spielberg) circuit in Austria. Complete hot laps, beat sector records, and experience a immersive pit-to-track workflow.
 
+## Documentation
+
+For an in-depth look at the project architecture, physics optimization, and a complete user manual, please read the [Technical Report](./Time_Attack_Report.pdf).
+
 ## Features
 
 - **Raycast Vehicle Physics** — 4-wheel suspension, speed-dependent steering, downforce, and braking
